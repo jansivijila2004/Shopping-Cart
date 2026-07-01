@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ElectroHub - Electric Store</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:Arial,sans-serif;
+        scroll-behavior:smooth;
+    }
+
+    body{
+        background:linear-gradient(135deg,#22003b,#ff005d);
+        color:white;
+    }
+
+    .navbar{
+        background:#120024;
+    }
+
+    .navbar-brand{
+        font-weight:bold;
+        color:#ffd700 !important;
+        font-size:28px;
+    }
+
+    .nav-link{
+        color:white !important;
+        margin-left:20px;
+        font-weight:bold;
+    }
+
+    .nav-link:hover{
+        color:#ffd700 !important;
+    }
+
+    .hero{
+        min-height:90vh;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+    }
+
+    .hero h1{
+        font-size:55px;
+        font-weight:bold;
+    }
+
+    .hero span{
+        color:#00e5ff;
+    }
+
+    .hero p{
+        margin:20px 0;
+    }
+
+    .hero img{
+        width:100%;
+        border-radius:20px;
+        box-shadow:0 0 20px orange;
+    }
+
+    .btn-shop{
+        background:orange;
+        color:white;
+        border:none;
+        padding:12px 30px;
+        border-radius:30px;
+        font-weight:bold;
+    }
+
+    .btn-shop:hover{
+        background:#ff6600;
+    }
+
+    .section-title{
+        text-align:center;
+        font-size:35px;
+        margin-top:40px;
+        font-weight:bold;
+        color:#ffd700;
+    }
+
+    .search-box{
+        max-width:400px;
+        margin:auto;
+    }
+
+    .card{
+        background:#23103d;
+        border:2px solid #ff0066;
+        border-radius:20px;
+        overflow:hidden;
+        transition:.4s;
+    }
+
+    .card:hover{
+        transform:translateY(-8px);
+        box-shadow:0 0 20px #ff0066;
+    }
+
+    .card img{
+        height:220px;
+        object-fit:cover;
+    }
+
+    .card-title{
+        font-weight:bold;
+        color:white;
+    }
+
+    .price{
+        font-size:22px;
+        color:#ffd700;
+        font-weight:bold;
+    }
+
+    .btn-cart{
+        background:#ff5722;
+        color:white;
+        border:none;
+        border-radius:30px;
+        padding:8px 20px;
+    }
+
+    .btn-cart:hover{
+        background:#ff9800;
+    }
+
+    footer{
+        background:#120024;
+        text-align:center;
+        padding:30px;
+        margin-top:60px;
+    }
+
+    .cart{
+        background:red;
+        padding:5px 12px;
+        border-radius:50%;
+    }
+</style>
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">⚡ ElectroHub</a>
+            <button class="navbar-toggler bg-light" data-bs-toggle="collapse" data-bs-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#products">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#foot">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#cartModal">🛒 Cart <span class="cart" id="count">0</span></a>
+                    </li>   
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h1>Smart <span>Electric</span><br>Products For Your Home</h1>
+                    <p>Buy Premium Electrical Appliances at Best Price. Fast Delivery | Warranty | Quality Products</p>
+                    <button class="btn-shop">Shop Now</button>
+                </div>
+                <div class="col-md-6">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <h2 class="section-title">Choose Your Products</h2>
+    <div class="container mt-4">
+        <div class="search-box">
+            <input type="text" class="form-control" id="search" placeholder="Search Product..." onkeyup="searchProduct()">
+        </div>
+        <div class="row mt-5" id="products">
+            <div class="col-lg-4 col-md-6 mb-4 item">
+                <div class="card">
+                    <img src="./image/bulb.webp">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">LED Smart Bulb</h5>
+                        <p class="text-info">Lighting</p>
+                        <div class="price">₹399</div>
+                            <button class="btn-cart" onclick="addCart('LED Smart Bulb',399)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4 item">
+                <div class="card">
+                    <img src="./image/fan.jpg">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Ceiling Fan</h5>
+                        <p class="text-info">Home Appliance</p>
+                        <div class="price">₹2499</div>
+                            <button class="btn-cart" onclick="addCart('Ceiling Fan',2499)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4 item">
+                <div class="card">
+                    <img src="./image/board.jpg">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Extension Board</h5>
+                            <p class="text-info">Accessories</p>
+                            <div class="price">₹699</div>
+                                <button class="btn-cart" onclick="addCart('Extension Board',699)">Add to Cart</button>
+                        </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4 item">
+                <div class="card">
+                    <img src="./image/kettle.webp">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Electric Kettle</h5>
+                        <p class="text-info">Kitchen</p>
+                        <div class="price">₹1299</div>
+                            <button class="btn-cart" onclick="addCart('Electric Kettle',1299)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4 item">
+                <div class="card">
+                    <img src="./image/mixer.jpg">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Mixer Grinder</h5>
+                        <p class="text-info">Kitchen</p>
+                        <div class="price">₹3499</div>
+                            <button class="btn-cart" onclick="addCart('Mixer Grinder',3499)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4 item">
+                <div class="card">
+                    <img src="./image/stove.jpg">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Induction Stove</h5>
+                            <p class="text-info">Kitchen</p>
+                            <div class="price">₹2999</div>
+                                <button class="btn-cart" onclick="addCart('Induction Stove',2999)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4 item">
+                <div class="card">
+                    <img src="./image/fan.webp">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Table Fan</h5>
+                        <p class="text-info">Home Appliance</p>
+                        <div class="price">₹1799</div>
+                            <button class="btn-cart" onclick="addCart('Table Fan',1799)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4 item">
+                <div class="card">
+                    <img src="./image/light.jpg">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Emergency Light</h5>
+                        <p class="text-info">Lighting</p>
+                        <div class="price">₹999</div>
+                            <button class="btn-cart" onclick="addCart('Emergency Light',999)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4 item">
+                <div class="card">
+                    <img src="./image/power.jpg">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Power Bank</h5>
+                        <p class="text-info">Accessories</p>
+                        <div class="price">₹1499</div>
+                            <button class="btn-cart" onclick="addCart('Power Bank',1499)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4 item">
+                <div class="card">
+                    <img src="./image/speaker.jpg">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Bluetooth Speaker</h5>
+                        <p class="text-info">Accessories</p>
+                        <div class="price">₹2199</div>
+                            <button class="btn-cart" onclick="addCart('Bluetooth Speaker',2199)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4 item">
+                <div class="card">
+                    <img src="./image/tv.jpg">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Television</h5>
+                        <p class="text-info">Vision</p>
+                        <div class="price">₹5999</div>
+                            <button class="btn-cart" onclick="addCart('Television',5999)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4 item">
+                <div class="card">
+                    <img src="./image/machine.webp">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Washing Machine</h5>
+                        <p class="text-info">Home Appliance</p>
+                        <div class="price">₹3999</div>
+                            <button class="btn-cart" onclick="addCart('Washing Machine',3999)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="cartModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Your Cart</h4>
+                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group" id="cartItems">
+                        <li class="list-group-item"> Cart is Empty </li>
+                    </ul>
+                    <hr>
+                    <h4 class="text-end">
+                        Grand Total : ₹<span id="total">0</span>
+                    </h4>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success"> Proceed to Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="foot">
+        <h4>⚡ ElectroHub</h4>
+        <p>Premium Electric Store | Best Price | Fast Delivery</p>
+        <p>© 2026 ElectroHub. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+
+        let cart = [];
+
+        function addCart(name, price) {
+
+            let item = cart.find(p => p.name === name);
+
+            if (item) {
+                item.qty++;
+            } else {
+                cart.push({
+                    name: name,
+                    price: Number(price),
+                    qty: 1
+                });
+            }
+
+            updateCart();
+        }
+
+        function updateCart() {
+
+            let cartItems = document.getElementById("cartItems");
+            let count = document.getElementById("count");
+            let totalBox = document.getElementById("total");
+
+            cartItems.innerHTML = "";
+
+            let grandTotal = 0;
+            let totalQty = 0;
+
+            if (cart.length == 0) {
+
+                cartItems.innerHTML =
+                `<li class="list-group-item text-center">
+                    Cart is Empty
+                </li>`;
+
+                count.innerHTML = 0;
+                totalBox.innerHTML = 0;
+                return;
+            }
+
+            cart.forEach((item, index) => {
+
+                let subtotal = item.price * item.qty;
+
+                grandTotal += subtotal;
+                totalQty += item.qty;
+
+                cartItems.innerHTML += `
+
+        <li class="list-group-item">
+
+        <div class="d-flex justify-content-between align-items-center">
+
+        <div>
+
+        <h6>${item.name}</h6>
+
+        Price : ₹${item.price}<br>
+
+        Qty :
+        <button class="btn btn-sm btn-danger"
+        onclick="decreaseQty(${index})">-</button>
+
+        <span class="mx-2">${item.qty}</span>
+
+        <button class="btn btn-sm btn-success"
+        onclick="increaseQty(${index})">+</button>
+
+        <br>
+
+        <b>Subtotal : ₹${subtotal}</b>
+
+        </div>
+
+        <div>
+
+        <button class="btn btn-outline-danger btn-sm"
+        onclick="removeCart(${index})">
+        Remove
+        </button>
+
+        </div>
+
+        </div>
+
+        </li>
+
+        `;
+
+            });
+
+            count.innerHTML = totalQty;
+
+            totalBox.innerHTML = grandTotal;
+        }
+
+        function increaseQty(index){
+
+            cart[index].qty++;
+
+            updateCart();
+
+        }
+
+        function decreaseQty(index){
+
+            if(cart[index].qty > 1){
+
+                cart[index].qty--;
+
+            }else{
+
+                cart.splice(index,1);
+
+            }
+
+            updateCart();
+
+        }
+
+        function removeCart(index){
+
+            cart.splice(index,1);
+
+            updateCart();
+
+        }
+
+        function searchProduct(){
+
+            let input=document.getElementById("search").value.toUpperCase();
+
+            let item=document.querySelectorAll(".item");
+
+            let title=document.querySelectorAll(".card-title");
+
+            for(let i=0;i<title.length;i++){
+
+                if(title[i].innerHTML.toUpperCase().indexOf(input)>-1){
+
+                    item[i].style.display="";
+
+                }else{
+
+                    item[i].style.display="none";
+
+                }
+
+            }
+
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
